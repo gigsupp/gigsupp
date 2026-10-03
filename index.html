@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gigsupp | Software Development & Digital Solutions</title>
+    <meta name="description" content="Gigsupp builds mobile apps, websites, SaaS platforms, AI/ML solutions, automation systems, APIs, and custom software for startups and businesses based in Pune, India.">
+    <meta name="keywords" content="Gigsupp, Software Development Agency, Mobile App Development, Flutter Agency, Python Django Agency, Web Development, SaaS Development, AI ML Solutions, Pune">
+    <meta name="author" content="Gigsupp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Gigsupp | Software Development & Digital Solutions">
+    <meta property="og:description" content="Gigsupp builds mobile apps, websites, SaaS platforms, AI/ML solutions, automation systems, APIs, and custom software for startups and businesses.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb', // Primary requested: #2563EB
+                            700: '#1d4ed8',
+                        },
+                        darkSlate: {
+                            900: '#0f172a', // Dark requested: #0F172A
+                            950: '#090d16',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        /* Light mode defaults (#FFFFFF background, #F8FAFC secondary, #0F172A text) */
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+
+        /* Dark mode overrides */
+        .dark body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        /* Card Styling */
+        .gig-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gig-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+        .dark .gig-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .dark .gig-card:hover {
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navbar backdrop */
+        .gig-nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .dark .gig-nav {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Syntax code highlighting */
+        .code-kw { color: #ec4899; }
+        .code-fn { color: #2563eb; }
+        .dark .code-fn { color: #60a5fa; }
+        .code-str { color: #10b981; }
+        .code-cm { color: #94a3b8; font-style: italic; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        .dark ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-600 selection:text-white transition-colors duration-200">
+
+    <!-- 1. NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 gig-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            
+            <!-- Logo / Brand Name -->
+            <a href="#hero" class="flex items-center gap-3 font-bold text-slate-900 dark:text-white text-lg tracking-tight group">
+                <img src="assets/logo-horizontal-dark.svg" alt="Gigsupp Agency Logo" class="h-12 sm:h-14 w-auto hidden dark:block">
+                <img src="assets/logo-horizontal-light.svg" alt="Gigsupp Agency Logo" class="h-12 sm:h-14 w-auto block dark:hidden">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#hero" class="hover:text-brand-600 dark:hover:text-white transition">Home</a>
+                <a href="#about" class="hover:text-brand-600 dark:hover:text-white transition">About</a>
+                <a href="#services" class="hover:text-brand-600 dark:hover:text-white transition">Services</a>
+                <a href="#work" class="hover:text-brand-600 dark:hover:text-white transition">Work</a>
+                <a href="#products" class="hover:text-brand-600 dark:hover:text-white transition">Products</a>
+                <a href="#process" class="hover:text-brand-600 dark:hover:text-white transition">Process</a>
+                <a href="#contact" class="hover:text-brand-600 dark:hover:text-white transition">Contact</a>
+            </nav>
+
+            <!-- Actions & Theme Toggle -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Switcher -->
+                <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    <i id="theme-icon-dark" class="fa-solid fa-moon text-base hidden"></i>
+                    <i id="theme-icon-light" class="fa-solid fa-sun text-base text-amber-500"></i>
+                </button>
+
+                <!-- Primary CTA -->
+                <a href="#contact" class="hidden sm:inline-flex px-4 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-sm transition">
+                    Start a Project
+                </a>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button id="mobile-toggle" aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-xl" id="mobile-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pt-3 pb-6 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2 text-sm font-medium">
+            <a href="#hero" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+            <a href="#about" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+            <a href="#services" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Services</a>
+            <a href="#work" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Work</a>
+            <a href="#products" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Products</a>
+            <a href="#process" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Process</a>
+            <a href="#contact" class="mobile-nav-item block py-2 px-3 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            <div class="pt-2">
+                <a href="#contact" class="mobile-nav-item block w-full py-2.5 text-center rounded-lg bg-brand-600 text-white font-semibold shadow-sm">
+                    Start a Project
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 sm:pt-28">
+
+        <!-- 2. HERO SECTION -->
+        <section id="hero" class="py-12 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Copy -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-600/10 border border-brand-200 dark:border-brand-500/20 text-brand-600 dark:text-brand-400 text-xs font-mono font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span>Gigsupp Digital Agency • Software & Digital Solutions</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                            We Build Digital Products That Move Businesses Forward.
+                        </h1>
+                        <p class="text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-300 leading-relaxed">
+                            From mobile apps and SaaS platforms to AI solutions and custom software, Gigsupp helps turn ideas into scalable digital products.
+                        </p>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#contact" class="px-6 py-3.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md transition flex items-center gap-2">
+                            <span>Start a Project</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+
+                        <a href="#work" class="px-6 py-3.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-700 transition">
+                            Explore Our Work
+                        </a>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-6 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <span>📍 Pune, Maharashtra, India</span>
+                        <span>• Flutter & Python Experts</span>
+                        <span>• End-to-End Product Studio</span>
+                    </div>
+
+                </div>
+
+                <!-- Hero Visual: Product UI / Tech Architecture Card -->
+                <div class="lg:col-span-5">
+                    <div class="gig-card rounded-xl overflow-hidden shadow-2xl font-mono text-xs border border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-200">
+                        <!-- Hero Logo Header Banner -->
+                        <div class="p-4 bg-slate-950 border-b border-slate-800 flex items-center justify-center">
+                            <img src="assets/logo-horizontal-dark.svg" alt="Gigsupp Official Logo Banner" class="h-16 sm:h-20 w-auto">
+                        </div>
+
+                        <!-- IDE Header -->
+                        <div class="bg-slate-950/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between text-slate-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                            </div>
+                            <span class="text-xs text-slate-300 font-semibold">gigsupp_product_stack.dart</span>
+                            <span class="text-[10px] text-slate-500">Agency Engine</span>
+                        </div>
+
+                        <!-- IDE Code Body -->
+                        <div class="p-5 leading-relaxed overflow-x-auto bg-slate-950 text-slate-300">
+<pre><code><span class="code-cm">// Gigsupp Digital Products Architecture</span>
+<span class="code-kw">class</span> <span class="code-fn">GigsuppAgency</span> {
+  <span class="code-kw">final</span> String mission = <span class="code-str">'Turning ideas into digital products'</span>;
+  <span class="code-kw">final</span> String location = <span class="code-str">'Pune, MH, India'</span>;
+
+  <span class="code-kw">final</span> List&lt;String&gt; coreSolutions = [
+    <span class="code-str">'Mobile Applications (Flutter)'</span>,
+    <span class="code-str">'Custom Website Development'</span>,
+    <span class="code-str">'SaaS & Web Backends (Django)'</span>,
+    <span class="code-str">'AI/ML & Process Automation'</span>
+  ];
+
+  <span class="code-kw">bool</span> get readyToLaunch =&gt; <span class="code-kw">true</span>;
+}</code></pre>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="bg-slate-950/80 px-4 py-2.5 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+                            <span>Status: Verified Architecture</span>
+                            <span class="text-emerald-400">● Accepting New Clients</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. TECHNOLOGY STRIP -->
+        <section class="py-8 bg-slate-50 dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+                <p class="text-xs font-mono font-bold text-center text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    Technologies We Work With
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono">
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Flutter</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Python</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Django</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Django REST Framework</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Java</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">REST APIs</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">MySQL</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Machine Learning</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">AI</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">Figma</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">AWS</span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-800 dark:text-slate-200">GCP</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ABOUT GIGSUPP -->
+        <section id="about" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-12">
+                
+                <div class="max-w-3xl space-y-6">
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">About Us</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Building Ideas Into Digital Products
+                        </h2>
+                    </div>
+
+                    <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Gigsupp is a software development and digital solutions agency focused on helping businesses and startups build practical digital products.
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                        We work across mobile development, backend systems, SaaS, AI/ML, automation, UI/UX, APIs, and custom software.
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                        Our approach combines product thinking, modern technology, and practical development to transform ideas into usable applications.
+                    </p>
+                </div>
+
+                <!-- 3 Supporting Principles -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <div class="gig-card p-6 sm:p-8 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-600/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Product Focused</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            We focus on solving real business and user problems.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 sm:p-8 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-600/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Practical Technology</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            We choose technologies based on the product's actual requirements.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 sm:p-8 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-600/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">End-to-End Development</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            We can work across design, frontend, backend, APIs, databases, testing, and deployment.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. SERVICES SECTION -->
+        <section id="services" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="space-y-12">
+                    
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Capabilities</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            What We Build
+                        </h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <!-- 01 — Mobile App Development -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">01</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mobile App Development</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build modern mobile applications for Android and cross-platform environments.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Flutter development</li>
+                                    <li>• Android applications</li>
+                                    <li>• Cross-platform applications</li>
+                                    <li>• API integration</li>
+                                    <li>• Authentication</li>
+                                    <li>• Notifications & Location</li>
+                                    <li>• QR functionality</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Build a Mobile App →
+                            </a>
+                        </div>
+
+                        <!-- 02 — Website Development -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">02</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Website Development</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build modern websites for startups, businesses, and products.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Business websites</li>
+                                    <li>• Landing pages</li>
+                                    <li>• Portfolio websites</li>
+                                    <li>• Product websites</li>
+                                    <li>• Responsive websites</li>
+                                    <li>• API-connected websites</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Build a Website →
+                            </a>
+                        </div>
+
+                        <!-- 03 — SaaS Development -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">03</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">SaaS Development</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build custom SaaS platforms and business applications.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• SaaS MVPs</li>
+                                    <li>• Admin dashboards</li>
+                                    <li>• User management</li>
+                                    <li>• Subscription systems</li>
+                                    <li>• Business workflows</li>
+                                    <li>• REST APIs & Databases</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Build a SaaS Product →
+                            </a>
+                        </div>
+
+                        <!-- 04 — AI & Machine Learning -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">04</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">AI & Machine Learning</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build practical AI/ML solutions for business use cases.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Machine learning</li>
+                                    <li>• Computer vision</li>
+                                    <li>• AI integrations & APIs</li>
+                                    <li>• Data processing</li>
+                                    <li>• Model development</li>
+                                    <li>• MLOps concepts</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Implement AI Solutions →
+                            </a>
+                        </div>
+
+                        <!-- 05 — Backend & API Development -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">05</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Backend & API Development</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build backend systems and APIs.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Python & Django</li>
+                                    <li>• Django REST Framework</li>
+                                    <li>• REST APIs & MySQL</li>
+                                    <li>• Authentication & Security</li>
+                                    <li>• Database design</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Build Backend Systems →
+                            </a>
+                        </div>
+
+                        <!-- 06 — UI/UX & Product Design -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">06</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">UI/UX & Product Design</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Design and implement user-friendly digital products.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Figma design</li>
+                                    <li>• Mobile & Web UI</li>
+                                    <li>• Design systems</li>
+                                    <li>• Prototyping</li>
+                                    <li>• Figma-to-development</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Request UI/UX Design →
+                            </a>
+                        </div>
+
+                        <!-- 07 — Automation -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">07</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Automation</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Build practical automation solutions.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• Workflow automation</li>
+                                    <li>• API automation</li>
+                                    <li>• Business process automation</li>
+                                    <li>• AI-assisted automation</li>
+                                    <li>• Data workflows</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Automate Workflows →
+                            </a>
+                        </div>
+
+                        <!-- 08 — SEO & Digital Solutions -->
+                        <div class="gig-card p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="text-xs font-mono font-bold text-brand-600">08</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">SEO & Digital Solutions</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                    Provide digital solutions around online presence and growth.
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    <li>• SEO & Meta optimization</li>
+                                    <li>• Website performance optimization</li>
+                                    <li>• Digital presence strategy</li>
+                                    <li>• Business website solutions</li>
+                                    <li>• Technical improvements</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Improve Digital Presence →
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. INDUSTRIES / SOLUTIONS -->
+        <section id="industries" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-12">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Solutions</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Solutions For Different Business Needs
+                    </h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-rocket text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Startups</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            MVPs, SaaS products, mobile apps, prototypes.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-building text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Small & Medium Businesses</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Business applications, websites, automation, digital systems.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-seedling text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Agriculture</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Digital farming platforms, agriculture applications, farmer-focused solutions.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-store text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Marketplace Businesses</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Marketplace platforms, user management, listings, hiring, transactions.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-calendar-check text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Service Businesses</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Booking systems, business websites, customer applications, dashboards.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <i class="fa-solid fa-microchip text-brand-600 text-xl"></i>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Technology Products</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            APIs, SaaS, mobile applications, AI/ML integrations.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 7. FEATURED WORK -->
+        <section id="work" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="space-y-12">
+                    
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Case Studies</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Selected Work
+                        </h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        
+                        <!-- PROJECT 01 — OPENGIG -->
+                        <div class="gig-card flex flex-col justify-between overflow-hidden">
+                            <div>
+                                <div class="p-6 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700/80 space-y-2">
+                                    <span class="px-2.5 py-1 rounded bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-mono font-medium">Gig Marketplace Platform</span>
+                                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">OpenGig</h3>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        OpenGig is a gig marketplace platform designed to connect workers, freelancers, students, freshers, and gig workers with employers and companies looking for temporary and event-based workers.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Flutter</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Dart</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django REST Framework</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">MySQL</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">QR</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Location Services</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                                <button onclick="openCaseStudyModal('opengig')" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition">
+                                    View Case Study →
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PROJECT 02 — BHOOMIAI -->
+                        <div class="gig-card flex flex-col justify-between overflow-hidden">
+                            <div>
+                                <div class="p-6 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700/80 space-y-2">
+                                    <span class="px-2.5 py-1 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-medium">Smart Agriculture Platform</span>
+                                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">BhoomiAI</h3>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        BhoomiAI is an agriculture-focused mobile platform designed to help farmers access farming information and digital tools from a single application.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Flutter</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django REST Framework</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Open-Meteo</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Brevo OTP</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">AI/ML</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                                <button onclick="openCaseStudyModal('bhoomiai')" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition">
+                                    View Case Study →
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PROJECT 03 — RIDING CONNECT -->
+                        <div class="gig-card flex flex-col justify-between overflow-hidden">
+                            <div>
+                                <div class="p-6 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700/80 space-y-2">
+                                    <span class="px-2.5 py-1 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 text-xs font-mono font-medium">Motorcycle Community Platform</span>
+                                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Riding Connect</h3>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        Riding Connect is a motorcycle-focused social and riding platform designed to connect riders, organize group rides, discover riding communities, and share riding experiences.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Flutter</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Dart</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Django REST Framework</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">GPS/location</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Maps</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                                <button onclick="openCaseStudyModal('riding')" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition">
+                                    View Case Study →
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PROJECT 04 — GROCERY SHOPPING APP -->
+                        <div class="gig-card flex flex-col justify-between overflow-hidden">
+                            <div>
+                                <div class="p-6 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700/80 space-y-2">
+                                    <span class="px-2.5 py-1 rounded bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 text-xs font-mono font-medium">Mobile UI/UX Design</span>
+                                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Grocery Shopping App</h3>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        Mobile grocery shopping application UI/UX designed in Figma with a focus on clean navigation, product discovery, categories, and a simple shopping experience.
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Figma</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">UI/UX Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                                <button onclick="openCaseStudyModal('grocery')" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition">
+                                    View Details →
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 8. PRODUCTS SECTION -->
+        <section id="products" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-12">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Ecosystem</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Our Products
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- OpenGig -->
+                    <div class="gig-card p-8 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <span class="px-2.5 py-1 rounded bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-mono font-medium">Gig Marketplace</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">OpenGig</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                Gig marketplace platform connecting daily wage workers, freelancers, and students with employers for temporary work.
+                            </p>
+                        </div>
+                        <button onclick="openCaseStudyModal('opengig')" class="px-4 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition w-fit">
+                            Explore OpenGig
+                        </button>
+                    </div>
+
+                    <!-- BhoomiAI -->
+                    <div class="gig-card p-8 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <span class="px-2.5 py-1 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-medium">Agriculture Tech</span>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">BhoomiAI</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Agriculture technology platform helping farmers access useful digital farming resources, weather forecasts, and crop tools.
+                            </p>
+                        </div>
+                        <button onclick="openCaseStudyModal('bhoomiai')" class="px-4 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition w-fit">
+                            Explore BhoomiAI
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 9. TECHNOLOGY STACK -->
+        <section class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="space-y-10">
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Stack</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Our Technology Stack
+                        </h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <!-- Mobile -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Mobile</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Flutter</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Dart</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Android</span>
+                            </div>
+                        </div>
+
+                        <!-- Backend -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Backend</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Python</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Django</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Django REST Framework</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">REST APIs</span>
+                            </div>
+                        </div>
+
+                        <!-- Database -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Database</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">MySQL</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">SQL</span>
+                            </div>
+                        </div>
+
+                        <!-- AI / ML -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">AI / ML</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Python</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Machine Learning</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Computer Vision</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">AI integrations</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">MLOps concepts</span>
+                            </div>
+                        </div>
+
+                        <!-- Design -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Design</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Figma</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">UI/UX</span>
+                            </div>
+                        </div>
+
+                        <!-- Tools -->
+                        <div class="gig-card p-6 space-y-4">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Tools</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Git</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">GitHub</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Postman</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">DBeaver</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">VS Code</span>
+                            </div>
+                        </div>
+
+                        <!-- Cloud -->
+                        <div class="gig-card p-6 space-y-4 sm:col-span-2 lg:col-span-2">
+                            <h3 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">Cloud</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">AWS</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">GCP</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono font-medium">Render</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 10. OUR PROCESS -->
+        <section id="process" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-12">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Workflow</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        From Idea to Launch
+                    </h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="gig-card p-6 space-y-3">
+                        <span class="text-2xl font-extrabold font-mono text-brand-600">01</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Discover</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Understand the business, users, goals, and requirements.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <span class="text-2xl font-extrabold font-mono text-brand-600">02</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Plan</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Define scope, features, technology, architecture, and milestones.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <span class="text-2xl font-extrabold font-mono text-brand-600">03</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Design</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Create wireframes, UI/UX, and product flows.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <span class="text-2xl font-extrabold font-mono text-brand-600">04</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Develop</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Build the frontend, backend, APIs, database, and integrations.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3">
+                        <span class="text-2xl font-extrabold font-mono text-brand-600">05</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Test</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                            Test functionality, responsiveness, APIs, and user flows.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-3 bg-brand-600 text-white">
+                        <span class="text-2xl font-extrabold font-mono text-brand-100">06</span>
+                        <h3 class="text-lg font-bold text-white">Launch & Improve</h3>
+                        <p class="text-brand-100 text-xs leading-relaxed">
+                            Deploy the product and continue improving it based on requirements and feedback.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 11. WHY GIGSUPP -->
+        <section class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="space-y-12">
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Why Us</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Why Build With Gigsupp?
+                        </h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">One Development Partner</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Work across mobile, backend, APIs, SaaS, AI/ML, and digital products.
+                            </p>
+                        </div>
+
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Product Thinking</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                We focus on the actual business problem instead of building unnecessary features.
+                            </p>
+                        </div>
+
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Flexible Development</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Suitable for MVPs, startups, existing applications, and custom software.
+                            </p>
+                        </div>
+
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Modern Stack</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Use technologies suited to modern mobile, web, backend, and AI applications.
+                            </p>
+                        </div>
+
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Direct Communication</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Keep requirements, progress, and development decisions clear.
+                            </p>
+                        </div>
+
+                        <div class="gig-card p-6 sm:p-8 space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Long-Term Approach</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Build products that can evolve as the business grows.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12. TESTIMONIALS SECTION -->
+        <section id="testimonials" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-8">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Feedback</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        What Clients Say
+                    </h2>
+                </div>
+
+                <div class="gig-card p-8 text-center space-y-3 border-dashed border-2">
+                    <i class="fa-solid fa-quote-left text-2xl text-slate-400"></i>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm font-medium">
+                        Client testimonials will appear here as projects are completed.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 13. FAQ -->
+        <section id="faq" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div class="space-y-3 text-center">
+                    <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Questions</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Frequently Asked Questions
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">What type of projects does Gigsupp build?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            We build mobile applications, websites, SaaS platforms, backend systems, APIs, AI/ML solutions, automation tools, and custom software.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Can Gigsupp build an MVP?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Yes. We can help take an idea from initial requirements through design, development, testing, and launch.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Can you work with an existing application?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Yes. We can work with existing codebases for bug fixing, feature development, API integration, UI improvements, and modernization.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Do you build mobile apps?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Yes. Flutter is one of our primary technologies for cross-platform mobile development.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Do you build backend systems?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Yes. We work with Python, Django, Django REST Framework, REST APIs, and databases.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Can you integrate AI?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Yes. We can work on practical AI/ML integrations and machine-learning use cases based on project requirements.
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-2">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">How do I start a project?</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Send us your project requirements through the contact form. We can then discuss the scope, features, timeline, and development approach.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 14. FINAL CTA -->
+        <section class="py-16 sm:py-24 bg-brand-600 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    Have an Idea? Let's Build It.
+                </h2>
+                <p class="text-brand-100 text-base sm:text-lg max-w-2xl mx-auto">
+                    Tell us what you're trying to build. We'll help turn the idea into a practical digital product.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="#contact" class="px-6 py-3.5 rounded-lg bg-white text-brand-600 hover:bg-brand-50 font-bold text-sm shadow-md transition">
+                        Start a Project
+                    </a>
+                    <a href="#contact" class="px-6 py-3.5 rounded-lg bg-brand-700 hover:bg-brand-800 text-white font-bold text-sm transition">
+                        Contact Gigsupp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15. CONTACT / PROJECT INQUIRY -->
+        <section id="contact" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Inquiry</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Let's Talk About Your Project
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                            Have an app idea, SaaS product, website, automation requirement, or custom software project?
+                        </p>
+                    </div>
+
+                    <div class="gig-card p-6 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-600 text-lg"></i>
+                            <div>
+                                <h4 class="text-xs font-mono text-slate-500 dark:text-slate-400">Direct Email</h4>
+                                <p id="email-text" class="text-sm font-semibold text-slate-900 dark:text-white">vaishnavprathamesh75@gmail.com</p>
+                            </div>
+                            <button onclick="copyEmail()" class="ml-auto px-3 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                <span id="copy-btn-text">Copy</span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                            <i class="fa-solid fa-location-dot text-brand-600 text-lg"></i>
+                            <div>
+                                <h4 class="text-xs font-mono text-slate-500 dark:text-slate-400">Location</h4>
+                                <p class="text-sm font-semibold text-slate-900 dark:text-white">Pune, Maharashtra, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="gig-card p-3 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition">
+                            <i class="fa-brands fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="gig-card p-3 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form -->
+                <div class="lg:col-span-7">
+                    <div class="gig-card p-6 sm:p-8 space-y-6">
+                        
+                        <form id="contact-form" action="https://formspree.io/f/your_form_id" method="POST" class="space-y-4">
+                            
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label for="name" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Name *</label>
+                                    <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition">
+                                </div>
+
+                                <div class="space-y-1">
+                                    <label for="email" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Email *</label>
+                                    <input type="email" id="email" name="_replyto" required placeholder="john@example.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label for="company" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Company / Business</label>
+                                    <input type="text" id="company" name="company" placeholder="Acme Inc. / Startup" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition">
+                                </div>
+
+                                <div class="space-y-1">
+                                    <label for="project_type" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Project Type</label>
+                                    <input type="text" id="project_type" name="project_type" placeholder="Mobile App / SaaS / Website / AI" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label for="budget" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Budget Range</label>
+                                <input type="text" id="budget" name="budget" placeholder="Estimated project budget" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition">
+                            </div>
+
+                            <div class="space-y-1">
+                                <label for="message" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Message *</label>
+                                <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project requirements, scope, or idea..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-600 transition resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+                                <span>Send Project Inquiry</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+
+                        <div id="form-feedback" class="hidden p-3 rounded-lg text-center text-xs font-mono"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 16. FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Column 1 — Brand -->
+                <div class="space-y-3">
+                    <img src="assets/logo-horizontal-dark.svg" alt="Gigsupp Agency Logo" class="h-12 sm:h-14 w-auto">
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Software development and digital solutions for startups, businesses, and ambitious ideas.
+                    </p>
+                </div>
+
+                <!-- Column 2 — Company -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider">Company</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#work" class="hover:text-white transition">Work</a></li>
+                        <li><a href="#products" class="hover:text-white transition">Products</a></li>
+                        <li><a href="#process" class="hover:text-white transition">Process</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 — Services -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider">Services</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#services" class="hover:text-white transition">Mobile App Development</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Website Development</a></li>
+                        <li><a href="#services" class="hover:text-white transition">SaaS Development</a></li>
+                        <li><a href="#services" class="hover:text-white transition">AI & Machine Learning</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Backend & APIs</a></li>
+                        <li><a href="#services" class="hover:text-white transition">UI/UX</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Automation</a></li>
+                        <li><a href="#services" class="hover:text-white transition">SEO & Digital Solutions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 — Products & Connect -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider">Products & Connect</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#products" class="hover:text-white transition font-mono">OpenGig</a></li>
+                        <li><a href="#products" class="hover:text-white transition font-mono">BhoomiAI</a></li>
+                        <li class="pt-2"><a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center gap-2"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center gap-2"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="mailto:vaishnavprathamesh75@gmail.com" class="hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>© 2026 Gigsupp. All rights reserved.</p>
+                <div class="flex items-center gap-4 text-slate-400">
+                    <span>Built with technology and purpose.</span>
+                    <span>•</span>
+                    <button onclick="openLegalModal('privacy')" class="hover:text-white transition">Privacy Policy</button>
+                    <span>•</span>
+                    <button onclick="openLegalModal('terms')" class="hover:text-white transition">Terms of Service</button>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- CASE STUDY MODAL -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="gig-card max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 bg-white dark:bg-slate-900 relative rounded-2xl shadow-2xl">
+            <button onclick="closeCaseStudyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-lg bg-slate-100 dark:bg-slate-800 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-content" class="space-y-6"></div>
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeCaseStudyModal()" class="px-5 py-2.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-xs hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Close Case Study
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEGAL MODAL (Privacy Policy / Terms of Service) -->
+    <div id="legal-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="gig-card max-w-2xl w-full p-6 sm:p-8 space-y-4 bg-white dark:bg-slate-900 relative rounded-2xl shadow-2xl">
+            <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-lg bg-slate-100 dark:bg-slate-800 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 id="legal-title" class="text-xl font-bold text-slate-900 dark:text-white"></h3>
+            <div id="legal-content" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-3 leading-relaxed"></div>
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeLegalModal()" class="px-4 py-2 rounded-lg bg-brand-600 text-white font-medium text-xs">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script type="text/javascript">
+        // 1. Theme Switcher Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-icon-dark');
+        const lightIcon = document.getElementById('theme-icon-light');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // 2. Mobile Drawer Navigation
+        const mobileBtn = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 3. Case Study Details Data
+        const caseStudyData = {
+            opengig: {
+                title: "OpenGig — Gig Marketplace Platform",
+                status: "Active Development",
+                overview: "OpenGig is a gig marketplace platform designed to connect workers, freelancers, students, freshers, and gig workers with employers and companies looking for temporary and event-based workers.",
+                problem: "Daily wage workers, freelancers, and businesses face friction discovering verified local gig opportunities, verifying attendance on-site, and managing employer-worker disputes.",
+                solution: "Engineered a multi-role cross-platform Flutter app paired with a Django REST backend featuring QR attendance check-ins, location validation, worker verification, and an admin management dashboard.",
+                technology: ["Flutter", "Dart", "Python", "Django", "Django REST Framework", "MySQL", "REST APIs", "QR", "Location services"],
+                features: [
+                    "Gig discovery & search", "Worker profiles & Employer profiles", "Gig posting & cover notes",
+                    "Applicant hiring & management", "Business verification & QR attendance", "Check-in/out location verification",
+                    "Notifications & Chat", "Dispute management & Admin management"
+                ],
+                architecture: "Flutter Worker & Employer client apps, Flutter Admin application, Django REST backend microservices, and MySQL database.",
+                process: "Requirement discovery -> Database schema design -> Flutter UI build -> API integration -> Location & QR testing.",
+                screenshotsNote: "Architecture diagrams, mobile UI flows, and verified backend endpoint suites available.",
+                currentStatus: "Active Development"
+            },
+            bhoomiai: {
+                title: "BhoomiAI — Smart Agriculture Platform",
+                status: "Project / Product",
+                overview: "BhoomiAI is an agriculture-focused mobile platform designed to help farmers access farming information and digital tools from a single application.",
+                problem: "Farmers struggle to access reliable weather forecasts, government subsidy updates, crop guidance, and market prices across scattered channels.",
+                solution: "Integrated Open-Meteo weather API, crop guidance, mandi prices, Brevo OTP login, and voice AI assistance into a single Flutter mobile application.",
+                technology: ["Flutter", "Python", "Django", "Django REST Framework", "REST APIs", "Open-Meteo", "Brevo OTP", "AI/ML integrations"],
+                features: [
+                    "Farmer authentication & OTP login", "Crop guidance & disease management", "Government schemes directory",
+                    "Mandi information & Market prices", "Weather forecasting via Open-Meteo", "Agriculture alerts & Bazar features",
+                    "Voice/AI features for accessibility", "Admin content management"
+                ],
+                architecture: "Flutter mobile application connected to Django REST Framework backend APIs.",
+                process: "Farmer user research -> Weather & Mandi API integration -> Mobile UI layout -> Voice AI setup.",
+                screenshotsNote: "Mobile screen designs and backend API endpoints implemented.",
+                currentStatus: "Project / Product"
+            },
+            riding: {
+                title: "Riding Connect — Motorcycle Community Platform",
+                status: "Completed Platform Project",
+                overview: "Riding Connect is a motorcycle-focused social and riding platform designed to connect riders, organize group rides, discover riding communities, and share riding experiences.",
+                problem: "Motorcycle riders lacked a central platform to plan group rides, discover riding spots, and connect with local riding clubs.",
+                solution: "Engineered a location-based mobile application with ride planning tools, GPS route mapping, rider profiles, and group event notifications.",
+                technology: ["Flutter", "Dart", "Python", "Django", "Django REST Framework", "REST APIs", "GPS/location", "Maps"],
+                features: [
+                    "Rider profiles & Motorcycle information", "Rider discovery & Riding groups", "Clubs & Group ride organization",
+                    "Ride planning & Routes", "Riding spots directory", "Community content & Notifications", "Location-based functionality"
+                ],
+                architecture: "Flutter mobile frontend connected with Google Maps API and Django REST backend.",
+                process: "Rider workflow mapping -> Location/GPS service integration -> Club event management -> API deployment.",
+                screenshotsNote: "Rider community screens and map navigation layouts verified.",
+                currentStatus: "Completed Platform Project"
+            },
+            grocery: {
+                title: "Grocery Shopping App UI/UX Design",
+                status: "Figma UI/UX Design",
+                overview: "Mobile grocery shopping application UI/UX designed in Figma with a focus on clean navigation, product discovery, categories, and a simple shopping experience.",
+                problem: "Grocery ordering users encounter complex category search filters and cluttered checkout steps.",
+                solution: "Created an intuitive Figma mobile interface featuring instant visual category navigation, product search, cart summary, and clean checkout screens.",
+                technology: ["Figma", "UI/UX Design", "Mobile UI Wireframing"],
+                features: [
+                    "Home screen visual hero", "Category product discovery", "Product listings & details",
+                    "Cart summary & checkout flow", "Mobile navigation menu"
+                ],
+                architecture: "High-fidelity Figma UI prototype and component design system.",
+                process: "User journey wireframing -> Color system definition -> Component styling -> Interactive prototype.",
+                screenshotsNote: "Figma design prototype assets and wireframes ready for inspection.",
+                currentStatus: "Figma UI/UX Design Project"
+            }
+        };
+
+        function openCaseStudyModal(key) {
+            const data = caseStudyData[key];
+            if (!data) return;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <span class="px-2.5 py-1 rounded bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 text-xs font-mono font-medium">${data.status}</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">${data.title}</h3>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Overview</h4>
+                        <p>${data.overview}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">The Problem</h4>
+                        <p>${data.problem}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">The Solution</h4>
+                        <p>${data.solution}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Technology</h4>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            ${data.technology.map(t => `<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono">${t}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Key Features</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            ${data.features.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Architecture</h4>
+                        <p>${data.architecture}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Development Process</h4>
+                        <p>${data.process}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Screenshots & Assets</h4>
+                        <div class="p-3.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-mono text-xs">
+                            ${data.screenshotsNote}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono font-bold text-slate-900 dark:text-white uppercase mb-1">Current Status</h4>
+                        <p class="font-mono text-brand-600 dark:text-brand-400 font-semibold">${data.currentStatus}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('case-study-modal').classList.remove('hidden');
+        }
+
+        function closeCaseStudyModal() {
+            document.getElementById('case-study-modal').classList.add('hidden');
+        }
+
+        // 4. Legal Modal Logic (Privacy Policy & Terms)
+        function openLegalModal(type) {
+            const title = document.getElementById('legal-title');
+            const content = document.getElementById('legal-content');
+
+            if (type === 'privacy') {
+                title.innerText = "Privacy Policy — Gigsupp";
+                content.innerHTML = `
+                    <p>At Gigsupp, accessible from gigsupp.dev, one of our main priorities is the privacy of our visitors and clients.</p>
+                    <p><strong>Information Collection:</strong> We collect details submitted through our project inquiry form (Name, Email, Company, Project Type, Budget, Message) solely to evaluate and respond to project requests.</p>
+                    <p><strong>Data Usage:</strong> Your information is never sold or shared with third-party advertisers. It is strictly used for client communication and project planning.</p>
+                `;
+            } else {
+                title.innerText = "Terms of Service — Gigsupp";
+                content.innerHTML = `
+                    <p>Welcome to Gigsupp! By accessing our website and requesting development services, you agree to these terms.</p>
+                    <p><strong>Service Scope:</strong> Gigsupp provides custom software development, mobile application engineering, web development, and technical consulting based on agreed project scope documents.</p>
+                    <p><strong>Intellectual Property:</strong> All custom work delivered to clients upon final project payment belongs entirely to the client as specified in individual contract agreements.</p>
+                `;
+            }
+
+            document.getElementById('legal-modal').classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legal-modal').classList.add('hidden');
+        }
+
+        // 5. Copy Email
+        function copyEmail() {
+            const emailText = document.getElementById('email-text').innerText;
+            navigator.clipboard.writeText(emailText);
+            const copyBtn = document.getElementById('copy-btn-text');
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => { copyBtn.innerText = "Copy"; }, 2000);
+        }
+
+        // 6. Formspree Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const action = contactForm.getAttribute('action');
+
+            if (action.includes('your_form_id')) {
+                formFeedback.className = "p-3 rounded-lg text-center text-xs font-mono bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800";
+                formFeedback.innerHTML = "⚡ <strong>Form Demo Mode:</strong> Replace <code>your_form_id</code> in <code>index.html</code> with your actual Formspree ID to receive project inquiries.";
+                formFeedback.classList.remove('hidden');
+                contactForm.reset();
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending Inquiry...";
+
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formFeedback.className = "p-3 rounded-lg text-center text-xs font-mono bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800";
+                    formFeedback.innerText = "Thank you! Your project inquiry has been received by Gigsupp.";
+                    contactForm.reset();
+                } else {
+                    formFeedback.className = "p-3 rounded-lg text-center text-xs font-mono bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 border border-red-200 dark:border-red-800";
+                    formFeedback.innerText = "Submission error. Please email vaishnavprathamesh75@gmail.com directly.";
+                }
+            } catch (err) {
+                formFeedback.className = "p-3 rounded-lg text-center text-xs font-mono bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 border border-red-200 dark:border-red-800";
+                formFeedback.innerText = "Network error. Please try sending a direct email.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Send Project Inquiry";
+                formFeedback.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
